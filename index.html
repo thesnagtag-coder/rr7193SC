@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>The Roof &amp; Rainwater Check - Beneath the Surface by The Snag Tag</title>
+<meta name="description" content="8 real roof and rainwater checks, all from the ground, for home buyers or home owners. Free, 5 minutes, no signup - from The Snag Tag.">
+<style>
+:root{
+  --accent:#3E5C76; --accent-dark:#2D5B9A; --accent-rgb:62,92,118;
+}
+body[data-mode="light"], body{
+  --bg:#F7FAFD; --surface:#FFFFFF; --surface-2:#E8F0FA; --tile:#F7FAFD;
+  --ink:#16243F; --ink-mid:#44546F; --ink-soft:#6B7A93; --line:#C9D6E8;
+  --navy:#16243F; --navy-2:#1E3154;
+  --safe:#2E7D4F; --safe-bg:#E7F5EC;
+  --flag:#A15C00; --flag-bg:#FFF3E0;
+  --grid:rgba(45,91,154,.06);
+}
+body[data-mode="dark"]{
+  --bg:#0F1A2C; --surface:#15233A; --surface-2:#1C3150; --tile:#122036;
+  --ink:#E6EEF9; --ink-mid:#B8C6DB; --ink-soft:#8C9BB2; --line:#2F4466;
+  --navy:#0B1424; --navy-2:#0F1A2C;
+  --safe:#81C995; --safe-bg:#1B3326;
+  --flag:#FFB74D; --flag-bg:#3A2C17;
+  --grid:rgba(140,180,230,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  transition:background .25s,color .25s;
+}
+h1,h2,h3,h4{margin:0}
+.mono{font-family:ui-monospace,"SFMono-Regular","Cascadia Mono","Roboto Mono",Consolas,monospace}
+::selection{background:rgba(var(--accent-rgb),.35)}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+.topbar{
+  background:var(--navy); color:#fff; border-bottom:3px solid var(--accent);
+  padding:12px 18px; display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:20;
+}
+.topbar-left{display:flex; align-items:center; gap:10px}
+.topbar-logo{width:32px;height:32px;border-radius:6px;border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;flex:none}
+.topbar-logo svg{width:18px;height:18px}
+.topbar-name{font-weight:700; font-size:16px; letter-spacing:-.2px}
+.topbar-name span{color:#A9C1D6}
+.topbar-sub{font-size:11px; color:rgba(255,255,255,.65); font-weight:500; letter-spacing:.06em; text-transform:uppercase}
+.topbar-tools{display:flex; gap:6px}
+.tool-btn{background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.2); color:#fff; border-radius:6px; padding:7px 10px; font-size:13px; cursor:pointer; font-weight:600; display:flex; align-items:center; gap:5px}
+.tool-btn:hover{background:rgba(255,255,255,.17)}
+
+.progress-wrap{position:sticky; top:59px; z-index:19; background:var(--bg); padding:10px 18px 8px; border-bottom:1px solid var(--line)}
+.progress-track{height:6px; background:var(--surface-2); border-radius:99px; overflow:hidden; max-width:640px; margin:0 auto}
+.progress-fill{height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-dark)); border-radius:99px; transition:width .35s ease; width:0%}
+.progress-label{max-width:640px; margin:6px auto 0; font-size:12px; color:var(--ink-soft); font-weight:600; display:flex; justify-content:space-between}
+
+main{max-width:640px; margin:0 auto; padding:28px 20px 90px}
+.screen{display:none; animation:fade .35s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}}
+
+.hook-badge{display:inline-flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); color:var(--accent-dark); font-weight:700; font-size:12.5px; padding:5px 12px; border-radius:99px; margin-bottom:18px}
+body[data-mode="dark"] .hook-badge{color:#8CB4E6}
+.hook h1{font-size:clamp(1.7rem,6vw,2.3rem); line-height:1.15; margin-bottom:14px}
+.hook h1 em{font-style:normal; color:var(--accent)}
+.hook p.lede{font-size:1.05rem; color:var(--ink-mid); margin-bottom:22px}
+.hook-facts{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:26px}
+.hook-fact{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 10px; text-align:center}
+.hook-fact .n{font-size:1.4rem; font-weight:700; color:var(--accent)}
+.hook-fact .t{font-size:11.5px; color:var(--ink-soft); font-weight:600; margin-top:2px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border-radius:10px; padding:15px 22px; font-size:16px; font-weight:700; cursor:pointer;
+  border:none; width:100%; text-align:center; text-decoration:none;
+}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:#fff; box-shadow:0 4px 14px rgba(var(--accent-rgb),.3)}
+.btn-primary:hover{filter:brightness(1.07)}
+.btn-ghost{background:var(--surface); color:var(--ink); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent)}
+.hint-row{display:flex; align-items:center; gap:8px; margin-top:14px; font-size:13px; color:var(--ink-soft); justify-content:center; text-align:center}
+
+.choose-card{background:var(--surface); border:1.5px solid var(--line); border-radius:12px; padding:18px 18px; margin-bottom:12px; cursor:pointer; transition:border-color .15s}
+.choose-card:hover{border-color:var(--accent)}
+.choose-card .cc-label{font-size:1.1rem; font-weight:700; margin-bottom:3px}
+.choose-card .cc-range{font-size:13px; color:var(--ink-soft); font-weight:600}
+
+.zone-chip{display:inline-flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); color:var(--ink-mid); font-weight:700; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; padding:5px 11px; border-radius:99px; margin-bottom:16px}
+.zone-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+.check-card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px 22px; box-shadow:0 2px 12px rgba(22,36,63,.06)}
+.check-card .verb{font-size:12.5px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px}
+.check-card h2{font-size:1.35rem; line-height:1.3; margin-bottom:10px}
+.check-card .prompt{font-size:1rem; color:var(--ink-mid); margin-bottom:20px}
+.check-card .prompt strong{color:var(--ink)}
+.opts{display:flex; flex-direction:column; gap:10px; margin-bottom:4px}
+.opt{
+  display:flex; align-items:center; gap:12px; background:var(--tile); border:1.5px solid var(--line);
+  border-radius:10px; padding:14px 16px; cursor:pointer; font-size:15px; font-weight:600; color:var(--ink);
+  transition:border-color .15s, background .15s;
+}
+.opt:hover{border-color:var(--accent)}
+.opt .ic{width:22px;height:22px;border-radius:50%;border:2px solid var(--line); flex:none; display:flex;align-items:center;justify-content:center; font-size:13px; font-weight:800; color:transparent}
+.opt.selected{border-color:var(--accent-dark)}
+.opt.selected.safe{background:var(--safe-bg); border-color:var(--safe)}
+.opt.selected.safe .ic{border-color:var(--safe); color:var(--safe)}
+.opt.selected.flag{background:var(--flag-bg); border-color:var(--flag)}
+.opt.selected.flag .ic{border-color:var(--flag); color:var(--flag)}
+.change-hint{font-size:12.5px; color:var(--ink-soft); margin:10px 0 0}
+
+.reveal{margin-top:18px; border-radius:10px; padding:16px 18px; border-left:4px solid var(--accent-dark); background:var(--surface-2); display:none}
+.reveal.show{display:block; animation:fade .3s ease}
+.reveal .rk{font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--accent-dark); margin-bottom:6px}
+.reveal.good{border-left-color:var(--safe); background:var(--safe-bg)}
+.reveal.good .rk{color:var(--safe)}
+.reveal.bad{border-left-color:var(--flag); background:var(--flag-bg)}
+.reveal.bad .rk{color:var(--flag)}
+.reveal p{margin:0 0 8px; font-size:14.5px; color:var(--ink-mid)}
+.reveal p:last-child{margin-bottom:0}
+.reveal .src{font-size:12.5px; color:var(--ink-soft); font-style:italic}
+
+.nav-row{display:flex; gap:10px; margin-top:22px}
+.nav-row .btn{flex:1}
+.nav-back{background:transparent; color:var(--ink-soft); border:none; font-size:13px; font-weight:600; cursor:pointer; padding:8px; margin-top:10px; width:100%; text-align:center}
+
+.result-head{text-align:center; margin-bottom:24px}
+.result-head .kicker{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft)}
+.result-head h1{font-size:1.8rem; margin:8px 0 4px}
+.result-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:22px 0 26px}
+.rstat{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 8px; text-align:center}
+.rstat .n{font-size:1.9rem; font-weight:700}
+.rstat.total .n{color:var(--ink)}
+.rstat.safe .n{color:var(--safe)}
+.rstat.flag .n{color:var(--flag)}
+.rstat .t{font-size:11.5px; color:var(--ink-soft); font-weight:600; margin-top:2px}
+
+.zone-bars{display:flex; flex-direction:column; gap:10px; margin-bottom:26px}
+.zbar-row{display:flex; align-items:center; gap:10px}
+.zbar-label{width:132px; flex:none; font-size:12.5px; font-weight:600; color:var(--ink-mid); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.zbar-track{flex:1; height:9px; background:var(--surface-2); border-radius:99px; overflow:hidden}
+.zbar-fill{height:100%; border-radius:99px; background:var(--safe)}
+.zbar-fill.partial{background:var(--flag)}
+.zbar-count{width:38px; flex:none; text-align:right; font-size:12.5px; font-weight:700; color:var(--ink-soft)}
+
+.section-h{font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); margin:26px 0 12px}
+.finding{display:flex; gap:12px; padding:13px 0; border-bottom:1px solid var(--line)}
+.finding:last-child{border-bottom:none}
+.finding .fic{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.finding.flag .fic{background:var(--flag-bg); color:var(--flag)}
+.finding.safe .fic{background:var(--safe-bg); color:var(--safe)}
+.finding .ft{font-weight:700; font-size:14.5px; margin-bottom:2px}
+.finding .fd{font-size:13.5px; color:var(--ink-soft); line-height:1.5}
+
+.quickwin{background:var(--surface); border:1.5px solid var(--accent); border-radius:14px; padding:20px; margin:8px 0 26px}
+.quickwin .qk{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin-bottom:8px}
+.quickwin h3{font-size:1.1rem; margin-bottom:8px}
+.quickwin p{font-size:14.5px; color:var(--ink-mid); margin:0}
+
+.bridge{background:var(--navy); border-top:3px solid var(--accent); color:#fff; border-radius:14px; padding:26px 22px; margin:10px 0 20px}
+.bridge .bk{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#A9C1D6}
+.bridge h3{font-size:1.4rem; margin:8px 0 12px; line-height:1.3}
+.bridge p{font-size:14.5px; color:rgba(255,255,255,.82); margin:0 0 14px}
+.bridge .still{background:rgba(255,255,255,.07); border-radius:10px; padding:14px 16px; margin:14px 0}
+.bridge .still h4{font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:rgba(255,255,255,.6); margin-bottom:8px}
+.bridge .still ul{margin:0; padding-left:18px; font-size:13.5px; color:rgba(255,255,255,.85)}
+.bridge .still li{margin-bottom:5px}
+.bridge .btn-primary{margin-top:6px}
+.bridge .note{font-size:11.5px; color:rgba(255,255,255,.5); margin-top:10px; text-align:center}
+
+.restart-row{text-align:center; margin-top:8px}
+.restart-row button{background:none; border:none; color:var(--ink-soft); font-size:13px; font-weight:600; text-decoration:underline; cursor:pointer}
+
+.disclaimer{font-size:12px; color:var(--ink-soft); text-align:center; margin-top:30px; padding-top:18px; border-top:1px solid var(--line); line-height:1.6}
+</style>
+</head>
+<body data-mode="light">
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#A9C1D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 13l-1 2.5M12.5 13l-1 2.5M16 13l-1 2.5"/></svg></span>
+    <div>
+      <div class="topbar-name">Beneath the <span>Surface</span></div>
+      <div class="topbar-sub">by The Snag Tag &middot; Roof &amp; Rainwater Check</div>
+    </div>
+  </div>
+  <div class="topbar-tools">
+    <button class="tool-btn" id="modeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+  </div>
+</div>
+
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label"><span id="progressText">Check 1</span><span id="progressPct">0%</span></div>
+</div>
+
+<main>
+
+  <section class="screen active" id="screen-hook">
+    <div class="hook">
+      <span class="hook-badge">🌧️ For home buyers and home owners</span>
+      <h1>Read a roof <em>without leaving the ground.</em></h1>
+      <p class="lede">Real checks, pulled from The Snag Tag's Beneath the Surface Roof &amp; Rainwater tool. Everything from the ground, a window or inside: no ladders, no climbing. No signup, no scare tactics.</p>
+      <div class="hook-facts">
+        <div class="hook-fact"><div class="n">8</div><div class="t">real checks</div></div>
+        <div class="hook-fact"><div class="n">~5</div><div class="t">minutes</div></div>
+        <div class="hook-fact"><div class="n">Free</div><div class="t">to start</div></div>
+      </div>
+      <button class="btn btn-primary" id="startBtn" type="button">Start the Check &rarr;</button>
+      <div class="hint-row">Free. No account. Your answers stay on this device.</div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-choose">
+    <div class="hook">
+      <h1 style="font-size:1.6rem">Which fits you right now?</h1>
+      <p class="lede" style="margin-bottom:20px">This decides which real checks you'll see today. Pick the one that fits.</p>
+      <div class="choose-card" data-key="buyer"><div class="cc-label">I'm viewing or buying a home</div><div class="cc-range">Pre-Purchase checks</div></div>
+      <div class="choose-card" data-key="owner"><div class="cc-label">I live in or look after a home</div><div class="cc-range">Maintenance checks for owners, tenants and landlords</div></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-check">
+    <span class="zone-chip"><span class="dot"></span><span id="chkZone">Zone</span></span>
+    <div class="check-card">
+      <div class="verb" id="chkVerb">Check</div>
+      <h2 id="chkTitle"></h2>
+      <p class="prompt" id="chkPrompt"></p>
+      <div class="opts" id="chkOpts"></div>
+      <p class="change-hint">Pick either one. You can change your answer any time before you move on.</p>
+      <div class="reveal" id="chkReveal">
+        <div class="rk" id="revealKicker">Here's what actually matters</div>
+        <p id="revealWhy"></p>
+        <p id="revealHow"></p>
+        <p class="src" id="revealSrc"></p>
+      </div>
+      <div class="nav-row" id="chkNavRow" style="display:none">
+        <button class="btn btn-primary" id="chkNextBtn" type="button">Next check &rarr;</button>
+      </div>
+    </div>
+    <button class="nav-back" id="chkBackBtn" type="button">&larr; back</button>
+    <button class="nav-back" id="chkChooseBtn" type="button" style="opacity:.65">Choose a different check</button>
+  </section>
+
+  <section class="screen" id="screen-result">
+    <div class="result-head">
+      <div class="kicker">Your Roof &amp; Rainwater Check</div>
+      <h1 id="resultHeadline">Here's what you found</h1>
+    </div>
+
+    <div class="result-stats">
+      <div class="rstat total"><div class="n" id="statTotal">0</div><div class="t">checked today</div></div>
+      <div class="rstat safe"><div class="n" id="statSafe">0</div><div class="t">already sorted</div></div>
+      <div class="rstat flag"><div class="n" id="statFlag">0</div><div class="t">need attention</div></div>
+    </div>
+
+    <div class="zone-bars" id="zoneBars"></div>
+
+    <div class="section-h">What to check today</div>
+    <div id="findingsFlag"></div>
+
+    <div class="section-h">Already sorted</div>
+    <div id="findingsSafe"></div>
+
+    <div class="quickwin" id="quickwin">
+      <div class="qk">&#9889; Quick win - do this now, free</div>
+      <h3 id="qwTitle"></h3>
+      <p id="qwBody"></p>
+    </div>
+
+    <div class="bridge">
+      <div class="bk">The complete system</div>
+      <h3 id="bridgeHeadline">You found the gaps. Here's what closes them.</h3>
+      <p id="bridgeBody"></p>
+      <div class="still" id="bridgeStill">
+        <h4>Today's check opened part of the picture. Here's what's still closed:</h4>
+        <ul id="bridgeStillList"></ul>
+      </div>
+      <a class="btn btn-primary" id="proBtn" href="#" target="_blank" rel="noopener">Get the complete tool &rarr;</a>
+      <div class="note">One-time purchase. Works offline, on any device, no subscription.</div>
+      <button class="btn btn-ghost" id="saveResultsBtn" type="button" style="margin-top:12px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#fff">Not ready yet? Save my results instead &rarr;</button>
+      <div class="note">Downloads a copy of exactly what you found today, free, no email needed. Nothing here disappears, but nothing reminds you either, so keep it somewhere you'll see it.</div>
+    </div>
+
+    <div class="restart-row"><button id="restartBtn" type="button">&#8634; Start the check again</button></div>
+
+    <div class="disclaimer">This is educational general guidance from The Snag Tag, a NEBOSH &amp; OSHA trained HSE professional. It is not a roof survey and does not confirm where water is entering. Never go onto a roof or ladder for these checks: work at height is for a competent person. Rules differ between countries, so always check local requirements.</div>
+  </section>
+
+</main>
+
+<script>
+/* ============================================================
+   SET YOUR GUMROAD LINK HERE (one place, used everywhere)
+   ============================================================ */
+const GUMROAD_URL = "https://snagtag.gumroad.com/l/BTS_RoofRainwater_PRO";
+
+const PRODUCTS = {
+  "buyer": {
+    "label": "Pre-Purchase",
+    "ageRange": "Viewing or buying a home",
+    "accent": "#3E5C76",
+    "accentDark": "#2D5B9A",
+    "checks": [
+      {
+        "zone": "From the Ground",
+        "verb": "Walk outside",
+        "title": "Did you look at every side of the roof from the ground?",
+        "prompt": "Most viewings only see the front. Missing or slipped pieces are often <strong>at the back</strong>.",
+        "yes": "Yes, every side",
+        "no": "Only the front, or not at all",
+        "why": "Missing, slipped, cracked or lifted roof covering lets water in, and you can't judge a roof from one side.",
+        "how": "Walk around the building, or view it from the street or garden, and use your phone's zoom or binoculars. Photograph each side. Never climb a ladder or go onto the roof.",
+        "standard": "InterNACHI: a home inspection covers the roof-covering materials. UK HSE: treat all roofs as fragile until a competent person confirms otherwise.",
+        "tip": "Stand well back. You see far more of a roof from across the street than from right below it.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Sweep (Roof covering) · InterNACHI Standards of Practice 3.1 · UK HSE Fragile surfaces"
+      },
+      {
+        "zone": "From the Ground",
+        "verb": "Stand back",
+        "title": "Did you look along the roof line for dips or waves?",
+        "prompt": "A straight ridge is a good sign. A <strong>dip or wave</strong> is worth a professional's eye.",
+        "yes": "Yes, it looked straight",
+        "no": "I didn't look, or it dips",
+        "why": "A sagging or uneven roof line can point to a structural issue that needs a professional to assess.",
+        "how": "From a distance, look along the ridge and the slopes. Photograph any dip from the side. Ask for a structural engineer or suitably qualified building professional to look before you commit.",
+        "standard": "Professional practice: a sagging roof line is referred to a structural engineer or suitably qualified building professional.",
+        "tip": "Line the ridge up with something straight in your view, like a lamp post or a neighbour's roof. Dips jump out.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Sagging roof line) · Professional practice"
+      },
+      {
+        "zone": "Inside, Top Floor",
+        "verb": "At the viewing",
+        "title": "Did you check the top-floor ceilings for stains?",
+        "prompt": "Roof leaks usually show up <strong>on the ceiling below</strong> before anywhere else.",
+        "yes": "Yes, they looked clean",
+        "no": "No, or I saw marks",
+        "why": "Leaking roofs are a common source of moisture, and a stain on a top-floor ceiling is often the first visible sign.",
+        "how": "Look at every top-floor ceiling, especially near outside walls, chimneys and skylights. Photograph any stain and note what is above it. Ask whether there has been a leak and what was done.",
+        "standard": "US EPA: leaking roofs are a common moisture source. InterNACHI: inspectors report observed indications of active roof leaks.",
+        "tip": "Look for rings. A stain with a darker edge often means it has been wet more than once.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Top-floor ceiling stains) · US EPA Mold Course, Chapter 2 · InterNACHI Standards of Practice 3.1"
+      },
+      {
+        "zone": "Rainwater",
+        "verb": "Walk outside",
+        "title": "Did you look at the gutters for sagging or overflow marks?",
+        "prompt": "Overflowing gutters send water <strong>down the wall</strong> instead of away from it.",
+        "yes": "Yes, they looked sound",
+        "no": "No, or I saw problems",
+        "why": "Gutters that leak, sag or overflow can direct water into or under a building.",
+        "how": "From the ground, look for sagging sections, gaps at joints, plants growing in them, and dark or green streaks on the wall below. Photograph anything you find.",
+        "standard": "US EPA: clean and repair roof gutters regularly. Gutters and downspouts that direct water into or under a building are a moisture source.",
+        "tip": "Streaks below a gutter joint are often the clearest clue, even on a dry day.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Gutters) · US EPA Brief Guide · US EPA Mold Course, Chapter 2"
+      },
+      {
+        "zone": "Rainwater",
+        "verb": "Walk outside",
+        "title": "Do the downpipes carry water away from the walls?",
+        "prompt": "A downpipe that empties <strong>against the wall</strong> soaks the same spot every time it rains.",
+        "yes": "Yes, away from the walls",
+        "no": "No, or I didn't check",
+        "why": "Rainwater that isn't carried away from the building can collect at the base of walls and move into the structure.",
+        "how": "Follow each downpipe to the ground. Check it is connected, not cracked, and empties into a drain or away from the wall. Note any pooling or staining at the base.",
+        "standard": "US EPA: drain rain, irrigation water and snowmelt away from the building.",
+        "tip": "Look at the wall just above each downpipe outlet. Staining there tells you a lot about past overflow.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Downpipes) · US EPA Moisture Control Guidance"
+      },
+      {
+        "zone": "From the Ground",
+        "verb": "Walk outside",
+        "title": "Did you look where the roof meets chimneys and walls?",
+        "prompt": "These junctions are sealed with <strong>flashing</strong>, and gaps here are a classic leak point.",
+        "yes": "Yes, it looked sealed",
+        "no": "No, or I saw gaps",
+        "why": "Flashing keeps water out at junctions and diverts it away. Gaps, lifted or missing flashing can let water in.",
+        "how": "From the ground with zoom, look where the roof meets chimneys, walls, dormers and skylights. Photograph anything lifted, cracked or missing. Then check the ceiling or chimney breast inside below it.",
+        "standard": "US EPA: flashing plays a critical role in excluding water and diverting it out of the building. InterNACHI: inspectors look at flashing, skylights, chimneys and penetrations.",
+        "tip": "Pair the outside photo with one of the ceiling inside below it. Together they tell the story.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Flashing) · US EPA Moisture Control Guidance · InterNACHI Standards of Practice 3.1"
+      },
+      {
+        "zone": "Roof Space",
+        "verb": "Only if safe",
+        "title": "Did you look in the roof space, or ask about it?",
+        "prompt": "The roof space shows stains, damp insulation and ventilation <strong>you can't see from below</strong>.",
+        "yes": "Yes, looked or asked",
+        "no": "Not yet",
+        "why": "Water stains on timbers, damp insulation and poor ventilation are easiest to spot from inside the roof space.",
+        "how": "Only with permission and safe, lit, boarded access: look from the hatch for stains, damp or missing insulation, and blocked vents. Never step between joists. If access isn't safe, ask the seller or your surveyor to report on it.",
+        "standard": "InterNACHI: inspectors look at insulation and ventilation in attics and report their general absence. Safe-access rules: professional practice.",
+        "tip": "Just looking from the top of the hatch with a torch is often enough. You don't need to climb in.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Sweep (Roof space) · InterNACHI Standards of Practice 3.9 · Professional practice"
+      },
+      {
+        "zone": "Ask Before You Buy",
+        "verb": "Think back",
+        "title": "Have you asked how old the roof is and what's been repaired?",
+        "prompt": "A roof's history, repairs and guarantees are <strong>evidence you can keep</strong>.",
+        "yes": "Yes, I asked",
+        "no": "Not yet",
+        "why": "Past leaks, repairs and the age of the covering help explain what you see now, and any guarantee may be valuable.",
+        "how": "Ask: How old is the roof covering? Has it ever leaked, and what was done? Is there a guarantee, and does it transfer? When was it last professionally inspected? Get answers in writing.",
+        "standard": "Professional practice. Disclosure duties differ between countries, so check with your conveyancer or agent.",
+        "tip": "Ask by email after the viewing, so the answers are in writing and easy to compare.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Questions for the seller · Professional practice"
+      }
+    ]
+  },
+  "owner": {
+    "label": "Maintenance",
+    "ageRange": "Living in or looking after a home",
+    "accent": "#3E5C76",
+    "accentDark": "#2D5B9A",
+    "checks": [
+      {
+        "zone": "Rainwater",
+        "verb": "Go check",
+        "title": "Are your gutters clear and in good repair?",
+        "prompt": "Blocked gutters overflow, and overflow soaks <strong>walls, fascias and foundations</strong>.",
+        "yes": "Yes, clear and sound",
+        "no": "Not sure, or not recently",
+        "why": "Gutters that are blocked, sagging or leaking can direct water into or under the building.",
+        "how": "Check from the ground for plants, sagging and overflow streaks. Have gutters cleaned and repaired regularly. Cleaning at height is work for a competent person with the right access equipment.",
+        "standard": "US EPA: clean and repair roof gutters regularly. UK HSE: treat all roofs as fragile until a competent person confirms otherwise.",
+        "tip": "Watch your gutters during heavy rain once. Where they overflow tells you exactly where they're blocked.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Safe steps · US EPA Brief Guide · UK HSE Fragile surfaces"
+      },
+      {
+        "zone": "Inside, Top Floor",
+        "verb": "Think back",
+        "title": "After heavy rain, do you glance at the top-floor ceilings?",
+        "prompt": "A 30-second look after a storm catches leaks <strong>while they're small</strong>.",
+        "yes": "Yes, usually",
+        "no": "Not really",
+        "why": "Leaking roofs are a common moisture source, and early signs on ceilings are easy to miss until they grow.",
+        "how": "After heavy or wind-driven rain, look at top-floor ceilings, especially near chimneys, skylights and outside walls. Photograph and date anything new so you can see if it grows.",
+        "standard": "US EPA: leaking roofs are a common moisture source. Checking after rain: professional practice.",
+        "tip": "Take a photo of each top-floor ceiling now, while it's clean. It makes new marks easy to spot later.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Rain Log · US EPA Mold Course, Chapter 2 · Professional practice"
+      },
+      {
+        "zone": "Rainwater",
+        "verb": "Go check",
+        "title": "Do your downpipes empty away from the walls?",
+        "prompt": "Every downpipe collects water from a whole section of roof. It needs to <strong>go somewhere</strong>.",
+        "yes": "Yes, into drains or away",
+        "no": "Some empty against walls",
+        "why": "Water discharged at the base of a wall can collect there and move into the building.",
+        "how": "Check each downpipe is connected and clear, and that water goes into a drain or is carried away from the wall.",
+        "standard": "US EPA: drain rain, irrigation water and snowmelt away from the building.",
+        "tip": "A downpipe that suddenly stops overflowing at the bottom may be blocked higher up. Watch it in rain.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Downpipes) · US EPA Moisture Control Guidance"
+      },
+      {
+        "zone": "Rainwater",
+        "verb": "Walk outside",
+        "title": "Does the ground slope away from your walls?",
+        "prompt": "Soil or paving that runs <strong>towards</strong> the house sends rain straight to the wall base.",
+        "yes": "Yes, it slopes away",
+        "no": "No, or not sure",
+        "why": "Water that collects around the base of a building can move into walls and floors.",
+        "how": "Walk around the outside during or after rain. Note where water pools against the wall and where soil or paving slopes towards it.",
+        "standard": "US EPA: make sure the ground slopes away from the building foundation, so that water does not enter or collect around it.",
+        "tip": "Flower beds built up against a wall are a common culprit. Check behind the plants.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Water drains away) · US EPA Brief Guide"
+      },
+      {
+        "zone": "Safety",
+        "verb": "Think back",
+        "title": "Do you climb a ladder or onto the roof to check things yourself?",
+        "prompt": "Roof work is one of the <strong>most dangerous</strong> jobs around a home.",
+        "yes": "No, I use a professional",
+        "no": "Yes, sometimes",
+        "why": "The main causes of death and injury in roof work are falls from roof edges and through fragile roofs and rooflights.",
+        "how": "Check from the ground, a window or inside only. Leave anything at height to a competent person with the right access equipment. Treat all roofs as fragile.",
+        "standard": "UK HSE: the main causes of death and injury are falling from roof edges or openings, through fragile roofs and through fragile rooflights. All roofs should be treated as fragile until a competent person confirms they are not.",
+        "tip": "Binoculars or your phone's zoom from across the street show almost everything you'd see from a ladder.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Safety first · UK HSE Roof work · UK HSE Fragile surfaces"
+      },
+      {
+        "zone": "Leaks",
+        "verb": "Think back",
+        "title": "If a ceiling leak appeared, would it be dry within 24-48 hours?",
+        "prompt": "The first two days after a leak <strong>decide whether mould grows</strong>.",
+        "yes": "Yes, I'd act fast",
+        "no": "Probably not",
+        "why": "Wet materials that stay wet for longer than 24-48 hours are more likely to grow mould.",
+        "how": "Catch drips, protect belongings and dry the area with airflow or a dehumidifier. Keep away from light fittings that are wet. Arrange a roofer to find and fix the source.",
+        "standard": "US EPA: if wet or damp materials are dried 24-48 hours after a leak or spill, in most cases mould will not grow.",
+        "tip": "Keep a bucket, old towels and a torch in one place. It saves precious minutes during a storm.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Safe steps · US EPA Brief Guide"
+      },
+      {
+        "zone": "Roof Space",
+        "verb": "Only if safe",
+        "title": "Are the roof space vents clear of insulation?",
+        "prompt": "A roof space needs to <strong>breathe</strong>. Blocked vents can trap moisture.",
+        "yes": "Yes, they're clear",
+        "no": "Not sure",
+        "why": "Warm, moist air can reach the roof space and condense on cold surfaces if ventilation is poor.",
+        "how": "With safe, lit, boarded access only, look from the hatch at the eaves and vents. Note insulation pushed against vents, and droplets or frost on the underside of the roof in cold weather. Never step between joists.",
+        "standard": "InterNACHI: inspectors look at ventilation of attics and report its general absence. US EPA: warm humid air can leak into an attic and condense.",
+        "tip": "Look on a cold morning. Condensation is easiest to spot then.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Master Check (Roof space ventilation) · InterNACHI Standards of Practice 3.9 · US EPA Moisture Control Guidance"
+      },
+      {
+        "zone": "After a Storm",
+        "verb": "Think back",
+        "title": "After a storm, do you check the roof from the ground?",
+        "prompt": "Storm damage is easiest to deal with <strong>before the next rain</strong>.",
+        "yes": "Yes, from the ground",
+        "no": "Not usually",
+        "why": "Wind can move or remove roof covering and flashing, and damage may only show as a leak later.",
+        "how": "Once it is safe, walk around and look at every side from the ground. Photograph and date anything missing or moved before any clean-up. Keep away from loose or fallen materials, and call a roofer.",
+        "standard": "Professional practice. Stay off the roof: UK HSE advises treating all roofs as fragile.",
+        "tip": "Dated photos help with insurance and repairs. Take them before anything is moved.",
+        "src": "Source: Beneath the Surface - Roof & Rainwater, Sweep · Professional practice · UK HSE Fragile surfaces"
+      }
+    ]
+  }
+};
+const BRIDGE_STILL = {
+  "buyer": [
+    "<strong>The full 20-area Sweep</strong>: ridge, valleys, penetrations, fascias, flat roofs, chimney breasts and the roof space.",
+    "<strong>21 Master Checks</strong>, a findings register with 3-photo evidence, a roof record, questions for the seller and a printable report."
+  ],
+  "owner": [
+    "<strong>A Rain Log</strong> to track stains and overflows across storms, linked to each finding, plus a roof history record.",
+    "<strong>21 Master Checks, a 20-area Sweep</strong>, 3-photo evidence, 8 cited safe steps and a printable report."
+  ]
+};
+const BEHAVIOUR_FIRST = {
+  "buyer": [0, 2, 7, 3],
+  "owner": [4, 0, 1, 5]
+};
+
+const STORE_KEY = 'snagtag-roof-rainwater-check';
+let state = { idx:0, answers:[], started:false, product:null };
+let CHECKS = [];
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw){ const s = JSON.parse(raw); if(s && Array.isArray(s.answers)) state = s; }
+  }catch(e){}
+  if(state.product && PRODUCTS[state.product]) CHECKS = PRODUCTS[state.product].checks;
+  else state.product = null;
+}
+function saveState(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+function hexToRgbStr(hex){
+  hex = hex.replace('#','');
+  const r = parseInt(hex.substring(0,2),16), g = parseInt(hex.substring(2,4),16), b = parseInt(hex.substring(4,6),16);
+  return r+','+g+','+b;
+}
+function applyProductTheme(key){
+  const p = PRODUCTS[key];
+  document.documentElement.style.setProperty('--accent', p.accent);
+  document.documentElement.style.setProperty('--accent-dark', p.accentDark);
+  document.documentElement.style.setProperty('--accent-rgb', hexToRgbStr(p.accent));
+}
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('progressWrap').style.display = (id==='screen-check') ? 'block' : 'none';
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+}
+
+document.querySelectorAll('.choose-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const key = card.getAttribute('data-key');
+    state = { idx:0, answers:[], started:true, product:key };
+    CHECKS = PRODUCTS[key].checks;
+    applyProductTheme(key);
+    saveState();
+    renderCheck(); show('screen-check');
+  });
+});
+
+function renderCheck(){
+  const i = state.idx;
+  const c = CHECKS[i];
+  document.getElementById('chkZone').textContent = c.zone;
+  document.getElementById('chkVerb').textContent = c.verb;
+  document.getElementById('chkTitle').textContent = c.title;
+  document.getElementById('chkPrompt').innerHTML = c.prompt;
+  document.getElementById('progressText').textContent = 'Check ' + (i+1) + ' of ' + CHECKS.length;
+  document.getElementById('progressPct').textContent = Math.round(((i)/CHECKS.length)*100) + '%';
+  document.getElementById('progressFill').style.width = ((i)/CHECKS.length*100) + '%';
+
+  const opts = document.getElementById('chkOpts');
+  opts.innerHTML = '';
+  const answered = state.answers[i] !== undefined && state.answers[i] !== null;
+
+  [['yes', c.yes, true], ['no', c.no, false]].forEach(([key,label,isSafe])=>{
+    const div = document.createElement('div');
+    div.className = 'opt';
+    div.setAttribute('role','button');
+    div.setAttribute('tabindex','0');
+    const isSelected = answered && state.answers[i] === isSafe;
+    div.innerHTML = '<span class="ic">'+(isSelected ? '✓' : '')+'</span><span>'+label+'</span>';
+    if(isSelected) div.classList.add('selected', isSafe ? 'safe':'flag');
+    const pick = ()=>{
+      state.answers[i] = isSafe;
+      saveState();
+      renderCheck();
+      applyReveal(c, isSafe);
+      document.getElementById('chkNavRow').style.display = 'flex';
+      document.getElementById('chkNextBtn').textContent = (i === CHECKS.length-1) ? 'See my results →' : 'Next check →';
+    };
+    div.addEventListener('click', pick);
+    div.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } });
+    opts.appendChild(div);
+  });
+
+  const rv = document.getElementById('chkReveal');
+  if(answered){
+    applyReveal(c, state.answers[i]);
+    document.getElementById('chkNavRow').style.display = 'flex';
+    document.getElementById('chkNextBtn').textContent = (i === CHECKS.length-1) ? 'See my results →' : 'Next check →';
+  } else {
+    rv.classList.remove('show');
+    document.getElementById('chkNavRow').style.display = 'none';
+  }
+  document.getElementById('chkBackBtn').style.visibility = (i===0) ? 'hidden' : 'visible';
+}
+
+function applyReveal(c, isSafe){
+  const rv = document.getElementById('chkReveal');
+  rv.classList.add('show');
+  rv.classList.toggle('good', !!isSafe);
+  rv.classList.toggle('bad', !isSafe);
+  const kicker = document.getElementById('revealKicker');
+  const line1 = document.getElementById('revealWhy');
+  const line2 = document.getElementById('revealHow');
+  if(isSafe){
+    kicker.textContent = '✓ Good - that\'s sorted';
+    line1.textContent = 'That matches the guidance: ' + c.standard;
+    line2.textContent = c.tip;
+  } else {
+    kicker.textContent = '⚠ Worth fixing - here\'s why';
+    line1.textContent = c.why;
+    line2.textContent = c.how;
+  }
+  document.getElementById('revealSrc').textContent = c.src;
+}
+
+document.getElementById('chkNextBtn').addEventListener('click', ()=>{
+  if(state.idx < CHECKS.length-1){
+    state.idx++; saveState(); renderCheck(); show('screen-check');
+  } else {
+    document.getElementById('progressFill').style.width = '100%';
+    renderResult(); show('screen-result');
+  }
+});
+document.getElementById('chkBackBtn').addEventListener('click', ()=>{
+  if(state.idx>0){ state.idx--; saveState(); renderCheck(); show('screen-check'); }
+});
+document.getElementById('chkChooseBtn').addEventListener('click', ()=>{
+  state = { idx:0, answers:[], started:true, product:null };
+  saveState();
+  show('screen-choose');
+});
+
+document.getElementById('startBtn').addEventListener('click', ()=>{
+  state = { idx:0, answers:[], started:true, product:null }; saveState();
+  show('screen-choose');
+});
+document.getElementById('restartBtn').addEventListener('click', ()=>{
+  state = { idx:0, answers:[], started:true, product:null }; saveState();
+  show('screen-choose');
+});
+
+function escHtml(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+
+document.getElementById('saveResultsBtn').addEventListener('click', ()=>{
+  const p = PRODUCTS[state.product];
+  const safeItems = CHECKS.filter((c,i)=>state.answers[i]===true);
+  const flagItems = CHECKS.filter((c,i)=>state.answers[i]===false);
+  const dateStr = new Date().toLocaleDateString(undefined, {year:'numeric',month:'long',day:'numeric'});
+  const rowsFlag = flagItems.map(c=>'<div class="row flag"><strong>'+escHtml(c.title.replace(/\?$/,''))+'</strong><span>'+escHtml(c.how)+'</span><em>'+escHtml(c.src)+'</em></div>').join('') || '<p style="color:#6B7A93">Nothing flagged - every check today was already sorted.</p>';
+  const rowsSafe = safeItems.map(c=>'<div class="row safe"><strong>'+escHtml(c.title.replace(/\?$/,''))+'</strong><span>'+escHtml(c.tip)+'</span></div>').join('') || '<p style="color:#6B7A93">Nothing marked sorted yet.</p>';
+  const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>My Roof and Rainwater Check - '+dateStr+'</title>'
+    + '<style>body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:#F7FAFD;color:#16243F;max-width:640px;margin:0 auto;padding:32px 20px;line-height:1.6}'
+    + 'h1{font-size:1.5rem;margin:0 0 4px}p.sub{color:#6B7A93;margin:0 0 26px;font-size:14px}'
+    + 'h2{font-size:1rem;text-transform:uppercase;letter-spacing:.06em;color:#6B7A93;margin:26px 0 10px}'
+    + '.row{border-left:4px solid '+p.accent+';background:#fff;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px}'
+    + '.row.safe{border-left-color:#2E7D4F}.row.flag{border-left-color:#A15C00}'
+    + '.row strong{display:block;font-size:14.5px;margin-bottom:3px}.row span{font-size:13.5px;color:#44546F;display:block}.row em{font-size:12px;color:#6B7A93;display:block;margin-top:4px}'
+    + '.cta{display:inline-block;margin-top:22px;background:linear-gradient(135deg,'+p.accent+','+p.accentDark+');color:#fff;font-weight:700;padding:13px 20px;border-radius:10px;text-decoration:none}'
+    + 'footer{margin-top:30px;padding-top:16px;border-top:1px solid #C9D6E8;font-size:11.5px;color:#6B7A93}</style></head><body>'
+    + '<h1>My Roof &amp; Rainwater Check: ' + p.label + '</h1><p class="sub">Saved '+dateStr+' &middot; Beneath the Surface by The Snag Tag</p>'
+    + '<h2>Check today</h2>' + rowsFlag
+    + '<h2>Already sorted</h2>' + rowsSafe
+    + '<a class="cta" href="'+GUMROAD_URL+'" target="_blank" rel="noopener">Get the complete Roof &amp; Rainwater tool &rarr;</a>'
+    + '<footer>Educational general guidance from The Snag Tag, a NEBOSH &amp; OSHA trained HSE professional. Not a roof survey. Saved locally to your device; nothing was sent anywhere.</footer>'
+    + '</body></html>';
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'roof-rainwater-check-' + state.product + '-results.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 2000);
+});
+
+function renderResult(){
+  const p = PRODUCTS[state.product];
+  const total = CHECKS.length;
+  const safeCount = state.answers.filter(a=>a===true).length;
+  const flagCount = state.answers.filter(a=>a===false).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statSafe').textContent = safeCount;
+  document.getElementById('statFlag').textContent = flagCount;
+
+  document.getElementById('resultHeadline').textContent =
+    flagCount === 0 ? total + ' for ' + total + ' - genuinely well done' :
+    flagCount <= 2 ? 'Close. A couple of things to look at' :
+    'You just found real gaps';
+
+  const zones = {};
+  CHECKS.forEach((c,i)=>{
+    if(!zones[c.zone]) zones[c.zone] = {safe:0,total:0};
+    zones[c.zone].total++;
+    if(state.answers[i]===true) zones[c.zone].safe++;
+  });
+  const zb = document.getElementById('zoneBars');
+  zb.innerHTML = '';
+  Object.keys(zones).forEach(z=>{
+    const d = zones[z];
+    const pct = Math.round((d.safe/d.total)*100);
+    const row = document.createElement('div');
+    row.className = 'zbar-row';
+    row.innerHTML = '<div class="zbar-label">'+z+'</div><div class="zbar-track"><div class="zbar-fill'+(pct<100?' partial':'')+'" style="width:'+pct+'%"></div></div><div class="zbar-count">'+d.safe+'/'+d.total+'</div>';
+    zb.appendChild(row);
+  });
+
+  const flagWrap = document.getElementById('findingsFlag');
+  const safeWrap = document.getElementById('findingsSafe');
+  flagWrap.innerHTML = ''; safeWrap.innerHTML = '';
+  if(flagCount===0){
+    flagWrap.innerHTML = '<p style="font-size:14px;color:var(--ink-soft)">Nothing flagged today - see the sorted list below.</p>';
+  }
+  CHECKS.forEach((c,i)=>{
+    const isSafe = state.answers[i]===true;
+    const div = document.createElement('div');
+    div.className = 'finding ' + (isSafe?'safe':'flag');
+    div.innerHTML = '<div class="fic">'+(isSafe?'✓':'!')+'</div><div><div class="ft">'+c.title.replace(/\?$/,'')+'</div><div class="fd">'+(isSafe? 'Sorted - keep it that way.' : c.how)+'</div></div>';
+    (isSafe ? safeWrap : flagWrap).appendChild(div);
+  });
+
+  const behaviourFirst = BEHAVIOUR_FIRST[state.product] || [];
+  let qwIndex = behaviourFirst.find(i => state.answers[i]===false);
+  if(qwIndex === undefined) qwIndex = CHECKS.findIndex((c,i)=>state.answers[i]===false);
+  if(qwIndex === undefined || qwIndex === -1) qwIndex = 1;
+  const qw = CHECKS[qwIndex];
+  document.getElementById('qwTitle').textContent = qw.title.replace(/\?$/,'');
+  document.getElementById('qwBody').textContent = qw.how;
+
+  const bridgeBody = flagCount === 0
+    ? 'You\'re sorted on all ' + total + ' of today\'s checks. The full Beneath the Surface Roof & Rainwater tool goes much further: a 20-area outside and inside sweep, a findings register with photo evidence, a rain log and a printable report for your roofer, landlord or seller.'
+    : 'Today\'s check found ' + flagCount + ' of the most commonly missed roof and rainwater gaps. The full Beneath the Surface Roof & Rainwater tool helps you record each one properly, with photo evidence, a rain log and a printable report, so a roofer knows exactly where to look.';
+  document.getElementById('bridgeBody').textContent = bridgeBody;
+
+  const stillItems = BRIDGE_STILL[state.product] || [];
+  document.getElementById('bridgeStillList').innerHTML = stillItems.map(li=>'<li>'+li+'</li>').join('');
+
+  document.getElementById('proBtn').href = GUMROAD_URL;
+  document.getElementById('proBtn').textContent = 'Get the Roof & Rainwater tool →';
+}
+
+function applyMode(m){
+  document.body.setAttribute('data-mode', m);
+  document.getElementById('modeToggle').textContent = m==='dark' ? '☀️' : '🌙';
+  try{ localStorage.setItem(STORE_KEY+'-mode', m); }catch(e){}
+}
+document.getElementById('modeToggle').addEventListener('click', ()=>{
+  applyMode(document.body.getAttribute('data-mode')==='dark' ? 'light' : 'dark');
+});
+(function initMode(){
+  let m = 'light';
+  try{ m = localStorage.getItem(STORE_KEY+'-mode') || 'light'; }catch(e){}
+  applyMode(m);
+})();
+
+loadState();
+if(state.product) applyProductTheme(state.product);
+if(state.started && state.product && state.idx < CHECKS.length && !(state.answers.length===CHECKS.length && state.answers.every(a=>a!==undefined && a!==null))){
+  renderCheck(); show('screen-check');
+} else if(state.started && state.product && state.answers.length===CHECKS.length && state.answers.every(a=>a!==undefined && a!==null)){
+  renderResult(); show('screen-result');
+} else if(state.started && !state.product){
+  show('screen-choose');
+}
+</script>
+</body>
+</html>
